@@ -97,10 +97,10 @@ int MyQueue :: pop()
             return -1;
         }
         else{
-        //QueueNode*temp=front;
+        QueueNode*temp=front;
          ans=front->data;
         front=front->next;
-        //delete temp;
+        delete temp;
         }
         return ans;
 }

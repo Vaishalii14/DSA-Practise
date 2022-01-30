@@ -20,17 +20,15 @@ class Solution{
     int findFrequency(queue<int> &q, int k){
         // Your code here
         int count=0;
-        queue<int>q1;
-        while(!q.empty()){
+        int n=q.size();
+        int temp;
+        for(int i=0;i<n;i++){
+            temp=q.front();
             if(q.front()==k){
                 count++;
             }
-            q1.push(q.front());
             q.pop();
-        }
-        while(!q1.empty()){
-            q.push(q1.front());
-            q1.pop();
+            q.push(temp);
         }
         if(count!=0){
         return count;

@@ -12,7 +12,9 @@ class Solution {
 public:
     void reorderList(ListNode* head) {
        
-        if (!head) return;
+        if (!head){
+          return;  
+        } 
         
         ListNode *tmp = head, *half = head, *prev = NULL;
         while (tmp->next && tmp->next->next) {
@@ -20,17 +22,23 @@ public:
             half = half->next;
         }
        
-        if (tmp->next) half = half->next;
+        if (tmp->next){
+            half = half->next;
+        }
         
-        while (half) {
-            tmp = half->next;
-            half->next = prev;
-            prev = half;
-            half = tmp;
+        tmp=half->next;
+        half->next=NULL;
+        ListNode * nextp=NULL;
+        
+        while (tmp) {
+            nextp=tmp->next;
+            tmp->next=prev;
+            prev=tmp;
+            tmp=nextp;
         }
         half = prev;
         
-        // After reversing the second half, let's merge both the halfes
+        // After reversing the second half merge both the halfes
         while (head && half) {
             tmp = head->next;
             prev = half->next;
@@ -40,6 +48,8 @@ public:
             half = prev;
         }
         
-        if (head && head->next) head->next->next = NULL;
+        if (head && head->next){
+            head->next->next = NULL;
+        }
     }
 };

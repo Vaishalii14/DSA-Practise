@@ -10,19 +10,18 @@
  * };
  */
 class Solution {
+    void helper(TreeNode * root,vector<int> &ans){
+        if(root==NULL){
+            return ;
+        }
+        helper(root->left,ans);
+        ans.push_back(root->val);
+        helper(root->right,ans);
+    }
 public:
     vector<int> inorderTraversal(TreeNode* root) {
-      if(root==NULL){
-          return {};
-      } 
-        
-        vector<int> leftRoot=inorderTraversal(root->left);
-        leftRoot.push_back(root->val);
-        vector<int> rightRoot=inorderTraversal(root->right);
-        for(int i=0;i<rightRoot.size();i++){
-            leftRoot.push_back(rightRoot[i]);
-        }
-        
-        return leftRoot;
+      vector<int>ans;
+        helper(root,ans);
+        return ans;
     }
 };
